@@ -38,10 +38,10 @@ ddg_goodie_test(
   'number of days in january' => build_test('January', 31),
   # can use 3-chars month name
   'how many days are in mar' => build_test('Mar', 31),
-  'Number of days in may' => build_test('May', 30),
+  'Number of days in may' => build_test('May', 31),
   # month name case doesn't matter
   'how many days in JAn' => build_test('Jan', 31),
-  'how many days in ApRil' => build_test('April', 31),
+  'how many days in ApRil' => build_test('April', 30),
   # invalid triggers/months
   'number of days in test' => undef,
   'number of days in febtest' => undef,
