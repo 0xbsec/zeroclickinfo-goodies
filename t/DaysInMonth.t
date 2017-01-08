@@ -13,9 +13,13 @@ sub build_structured_answer {
 
   return qq(Number of days in $month is $days.),
     structured_answer => {
-      input     => [$month],
-      operation => 'Number of days in month',
-      result    => $days
+      data => {
+        title    => $days,
+        subtitle => sprintf('Number of days in month %s', $month)
+      },
+      templates => {
+        group => 'text',
+      },
     };
 }
 
@@ -23,17 +27,6 @@ sub build_test { test_zci(build_structured_answer(@_)) }
 
 ddg_goodie_test(
   [qw( DDG::Goodie::DaysInMonth )],
-
-  # month name can be complete
-  # 'number of days in january' => test_zci(
-  #     'Number of days in january is 31.',
-  #     structured_answer => {
-  #         input     => ['january'],
-  #         operation => 'Number of days in month',
-  #         result    => 31
-  #     }
-  # ),
-
   # month name can be complete
   'number of days in january' => build_test('January', 31),
   # can use 3-chars month name

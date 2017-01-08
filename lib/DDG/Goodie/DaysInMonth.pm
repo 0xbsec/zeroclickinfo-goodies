@@ -20,11 +20,16 @@ handle remainder => sub {
     my ($month) = $remainder =~ qr/^($month_regex)$/;
     return unless $month;
     my $days = calculateNumberOfDaysForMonthString($month);
-    return sprintf("Number of days in %s is %d.", ucfirst lc $month, $days),
+    $month = ucfirst lc $month;
+    return "Number of days in $month is $days.",
     structured_answer => {
-        input => [ucfirst lc $month],
-        operation => 'Number of days in month',
-        result => ($days)
+      data => {
+        title    => $days,
+        subtitle => "Number of days in month $month"
+      },
+      templates => {
+        group => 'text',
+      },
     };
 };
 
